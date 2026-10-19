@@ -40,10 +40,7 @@
     .secondary-photo{--photo-rotation:-3deg}
     .character-buddy{position:absolute;z-index:3;pointer-events:none;filter:drop-shadow(0 8px 7px #13294b40);animation:buddy-float 3s ease-in-out infinite}
     @keyframes buddy-float{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -9px;rotate:3deg}}
-    .buddy-woody{width:clamp(72px,17vw,132px);height:clamp(112px,25vw,205px);object-fit:contain;object-position:bottom;left:-8%;bottom:-2%;animation-delay:.35s}
-    .buddy-horse{width:clamp(84px,19vw,150px);height:clamp(106px,22vw,178px);object-fit:contain;right:-10%;bottom:-1%;animation-delay:.8s}
     .buddy-buzz{position:absolute;z-index:3;right:-.75rem;bottom:-.7rem;width:4.5rem;height:4.5rem;border:4px solid white;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#b8f3d6,#62c2a1);font-size:2rem;box-shadow:0 7px 18px #17345835;animation:buddy-float 2.5s ease-in-out infinite}
-    @media(max-width:500px){.buddy-woody{left:-5%;bottom:0}.buddy-horse{right:-7%;bottom:0}}
     @keyframes card-arrive{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
     .hero-copy>*{animation:rise-in .7s both}.hero-copy>*:nth-child(2){animation-delay:.1s}.hero-copy>*:nth-child(3){animation-delay:.2s}.hero-copy>*:nth-child(4){animation-delay:.3s}.hero-copy>*:nth-child(5){animation-delay:.4s}
     @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -91,7 +88,6 @@
       <div class="relative order-1 md:order-2 max-w-md mx-auto w-full">
         <div class="absolute -inset-4 rounded-[2.5rem] bg-yellow-300 rotate-6"></div>
         <img src="1.jpeg" alt="Joshua vestido de Buzz Lightyear, imagen principal de la invitación" class="hero-photo relative rounded-[2rem] w-full aspect-[1.18]">
-        <img src="woody_1.png" alt="Woody saluda desde el marco de la foto" class="character-buddy buddy-woody">
         <span class="buddy-buzz" role="img" aria-label="Buzz Lightyear">🚀</span>
         <div class="absolute -bottom-5 -left-3 sm:-left-7 bg-red-500 text-white western rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center text-center text-xl sm:text-2xl border-4 border-white shadow-lg rotate-[-10deg]">¡3<br>años!</div>
         <div class="absolute -top-4 -right-3 bg-white text-blue-900 font-bold px-4 py-2 rounded-xl shadow rotate-3">¡Al infinito y más allá! 🚀</div>
@@ -124,10 +120,7 @@
           <article class="card p-7 md:p-9 text-center"><div class="text-5xl mb-3">📍</div><h3 class="western text-2xl text-amber-900 mb-3">¿Dónde?</h3><p class="font-bold text-lg text-blue-950">Calle Ignacio Zaragoza #2</p><p class="text-slate-700">Col. 5 de Mayo</p><p class="text-sm text-slate-600 mt-2">Contra esquina de la primaria José Vasconcelos</p><a href="https://maps.app.goo.gl/kCxQdhyL9LS637Q96?g_st=afm" target="_blank" rel="noopener noreferrer" class="btn inline-flex mt-5 bg-sky-600 text-white font-bold px-5 py-3 rounded-full shadow">🗺️ Abrir ubicación en Google Maps</a></article>
         </div>
         <div class="mt-8 grid md:grid-cols-[.75fr_1.25fr] items-center gap-8 bg-blue-900 rounded-[2rem] p-6 md:p-9 text-white shadow-xl overflow-hidden">
-          <div class="relative mx-auto w-full max-w-sm md:max-w-none">
-            <img src="2.jpeg" alt="Joshua con atuendo vaquero junto a sus personajes favoritos de Toy Story" class="secondary-photo rounded-2xl w-full max-h-[390px]">
-            <img src="3.jpeg" alt="Joshua con Tiro al Blanco, su caballo vaquero" class="character-buddy buddy-horse">
-          </div>
+          <img src="2.jpeg" alt="Joshua con atuendo vaquero junto a sus personajes favoritos de Toy Story" class="secondary-photo mx-auto w-full max-w-sm rounded-2xl md:max-w-none md:max-h-[390px]">
           <div class="text-center md:text-left py-3"><div class="text-5xl mb-3">👢🤠⭐</div><p class="western text-yellow-300 text-sm tracking-[.2em]">CÓDIGO DE VESTIMENTA</p><h3 class="toy text-4xl md:text-5xl mt-2 mb-4">¡De vaqueros!</h3><p class="text-blue-100 text-lg">Invitamos al público general a venir con vestimenta vaquera. Sombrero, botas y pañuelo: ¡que empiece el rodeo!</p><div class="inline-flex mt-6 bg-red-500 px-5 py-3 rounded-full font-bold">Tema de la fiesta: Toy Story 🚀</div></div>
         </div>
         <section id="rsvp" class="mt-12 mx-auto max-w-2xl">

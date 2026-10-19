@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#68b9e8">
+  <meta name="description" content="Acompáñanos a celebrar la presentación de 3 años de Joshua Kaled. ¡Ven con vestimenta vaquera!">
+  <meta property="og:title" content="¡Joshua Kaled cumple 3! 🤠">
+  <meta property="og:description" content="Fiesta de presentación con temática Toy Story. 19 de diciembre, 15:00 h.">
+  <meta property="og:image" content="1.jpeg">
+  <title>¡La aventura de Joshua Kaled! | Toy Story</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Rye&family=Titan+One&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    :root{--sky:#70c8f2;--blue:#1668ad;--yellow:#ffd447;--red:#e74438;--ink:#173458;--cream:#fff8e8;--brown:#754323}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--cream);color:var(--ink);font-family:Fredoka,system-ui,sans-serif;overflow-x:hidden}
+    .western{font-family:Rye,serif}.toy{font-family:'Titan One',sans-serif}.sky{background:linear-gradient(180deg,#75c9f2 0%,#b7e8ff 65%,#fff0b7 65%,#ffe49b 100%)}
+    .clouds{background-image:radial-gradient(ellipse at 12% 26%,#fff 0 6%,transparent 6.3%),radial-gradient(ellipse at 19% 24%,#fff 0 8%,transparent 8.3%),radial-gradient(ellipse at 26% 28%,#fff 0 5%,transparent 5.3%),radial-gradient(ellipse at 78% 16%,#fff 0 5%,transparent 5.3%),radial-gradient(ellipse at 84% 13%,#fff 0 8%,transparent 8.3%),radial-gradient(ellipse at 91% 18%,#fff 0 5%,transparent 5.3%);opacity:.8}
+    .toy-title{color:#e84840;-webkit-text-stroke:1px #fff4ba;text-shadow:3px 4px 0 #f4b92c,0 7px 0 #286ba6,0 12px 24px #17345850}
+    .card{background:#fffdf7;border:3px solid #f3c84e;border-radius:26px;box-shadow:0 12px 0 #e4b33a,0 18px 35px #17345818}
+    .btn{transition:transform .18s,filter .18s}.btn:hover{transform:translateY(-3px) scale(1.02);filter:brightness(1.05)}
+    .hero-photo{object-fit:cover;object-position:center 44%;border:8px solid white;box-shadow:0 12px 0 #e94439,0 24px 45px #17345835;transform:rotate(2deg)}
+    .secondary-photo{object-fit:cover;object-position:center 40%;border:7px solid white;box-shadow:0 10px 0 #f4c63e,0 16px 30px #17345825;transform:rotate(-3deg)}
+    .cow-print{background-color:#fff;background-image:radial-gradient(ellipse at 23% 25%,#1d2736 0 12%,transparent 13%),radial-gradient(ellipse at 78% 78%,#1d2736 0 15%,transparent 16%),radial-gradient(ellipse at 84% 20%,#1d2736 0 7%,transparent 8%);background-size:90px 70px}
+    #game{background:linear-gradient(#6ec8f4 0 66%,#80bf59 66% 76%,#dfb357 76%)}
+    #detalles{transition:opacity .8s ease,filter .8s ease,transform .8s ease}#detalles.locked{opacity:.2;filter:blur(9px);pointer-events:none;user-select:none;transform:scale(.99)}
+    #welcome-screen{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:1rem;background:radial-gradient(circle at 50% 35%,#fff7cf 0,#facc15 55%,#b45309 100%);transition:opacity .7s ease,transform .7s ease}
+    .envelope-card{background:#78350f;border:6px solid #facc15;box-shadow:0 25px 55px #0007}
+    .envelope-card{animation:card-arrive .8s cubic-bezier(.2,.8,.2,1) both}
+    .welcome-hat{position:absolute;z-index:4;left:clamp(1.25rem,calc(50% - 245px),calc(50% - 190px));top:calc(50% - 220px);font-size:clamp(2.8rem,8vw,4.5rem);line-height:1;filter:drop-shadow(0 7px 5px #321b1190);transform-origin:50% 85%;animation:hat-wiggle 1.8s ease-in-out infinite;pointer-events:none}
+    @keyframes hat-wiggle{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(7px,5px) rotate(8deg)}}
+    .welcome-hat.fly{animation:hat-fly 1s cubic-bezier(.45,.05,.2,1) forwards}
+    @keyframes hat-fly{0%{transform:translate(0,0) rotate(-12deg) scale(1)}25%{transform:translate(35px,-35px) rotate(100deg) scale(1.1)}65%{transform:translate(var(--hat-x),var(--hat-y)) rotate(510deg) scale(.8)}100%{transform:translate(var(--hat-x),var(--hat-y)) rotate(720deg) scale(.18);opacity:0}}
+    .hero-photo,.secondary-photo{animation:hero-auto-zoom 4.5s ease-in-out infinite}
+    .secondary-photo{animation-delay:.7s}
+    @keyframes hero-auto-zoom{0%,100%{transform:rotate(2deg) scale(1);filter:brightness(1)}50%{transform:rotate(-1deg) scale(1.07);filter:brightness(1.06)}}
+    .secondary-photo{--photo-rotation:-3deg}
+    .character-buddy{position:absolute;z-index:3;pointer-events:none;filter:drop-shadow(0 8px 7px #13294b40);animation:buddy-float 3s ease-in-out infinite}
+    @keyframes buddy-float{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -9px;rotate:3deg}}
+    .buddy-woody{width:clamp(72px,17vw,132px);height:clamp(112px,25vw,205px);object-fit:contain;object-position:bottom;left:-8%;bottom:-2%;animation-delay:.35s}
+    .buddy-horse{width:clamp(84px,19vw,150px);height:clamp(106px,22vw,178px);object-fit:contain;right:-10%;bottom:-1%;animation-delay:.8s}
+    .buddy-buzz{position:absolute;z-index:3;right:-.75rem;bottom:-.7rem;width:4.5rem;height:4.5rem;border:4px solid white;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#b8f3d6,#62c2a1);font-size:2rem;box-shadow:0 7px 18px #17345835;animation:buddy-float 2.5s ease-in-out infinite}
+    @media(max-width:500px){.buddy-woody{left:-5%;bottom:0}.buddy-horse{right:-7%;bottom:0}}
+    @keyframes card-arrive{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .hero-copy>*{animation:rise-in .7s both}.hero-copy>*:nth-child(2){animation-delay:.1s}.hero-copy>*:nth-child(3){animation-delay:.2s}.hero-copy>*:nth-child(4){animation-delay:.3s}.hero-copy>*:nth-child(5){animation-delay:.4s}
+    @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .hero-photo,.secondary-photo{transition:filter .4s,box-shadow .4s;will-change:transform}
+    .image-tap{animation:photo-pop .45s cubic-bezier(.2,.8,.2,1)}@keyframes photo-pop{50%{transform:rotate(0) scale(1.08);filter:saturate(1.25)}}
+    .card{transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,border-color .35s}.card:hover{transform:translateY(-8px) rotate(-.5deg);box-shadow:0 16px 0 #e4b33a,0 24px 40px #17345825;border-color:#ffe071}
+    #game-stage{transition:box-shadow .35s,transform .35s,border-color .35s}#game-stage.game-active{animation:stage-glow 2s ease-in-out infinite alternate}
+    @keyframes stage-glow{to{box-shadow:0 0 0 7px #ffd44755,0 20px 45px #17345835;border-color:#a65f26}}
+    .toy-box{transition:transform .2s;animation:toy-bob 2.3s ease-in-out infinite}@keyframes toy-bob{50%{translate:0 -7px;rotate:2deg}}
+    .catch-item{transition:filter .15s,scale .15s}.catch-pop{animation:catch-pop .3s ease-out forwards!important;pointer-events:none}.snake-pop{animation:snake-pop .35s ease-out forwards!important;pointer-events:none}@keyframes snake-pop{50%{filter:drop-shadow(0 0 14px #e74438)}to{transform:scale(.6) rotate(-30deg);opacity:0}}@keyframes catch-pop{to{transform:scale(1.8) rotate(35deg);opacity:0;filter:drop-shadow(0 0 18px #fff)}}
+    .score-pop{animation:score-pop .3s ease-out}@keyframes score-pop{50%{transform:scale(1.35);color:#e74438}}
+    .sparkle-particle{position:absolute;z-index:6;pointer-events:none;font-size:24px;animation:sparkle-rise .65s ease-out forwards}@keyframes sparkle-rise{to{transform:translateY(-65px) scale(.3) rotate(90deg);opacity:0}}
+    #game-stage{height:410px;position:relative;overflow:hidden;border:7px solid #754323;border-radius:28px;background:linear-gradient(#7dd2f6 0 65%,#87c45d 65% 76%,#e7bf67 76%);touch-action:manipulation;isolation:isolate}
+    #game-stage:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%,#fff 0 5%,transparent 5.5%),radial-gradient(ellipse at 22% 18%,#fff 0 7%,transparent 7.5%),radial-gradient(ellipse at 29% 22%,#fff 0 4%,transparent 4.5%);opacity:.8;pointer-events:none}
+    .toy-box{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);font-size:75px;z-index:2;filter:drop-shadow(0 5px 3px #0003)}
+    .catch-item{position:absolute;z-index:4;border:0;background:none;font-size:46px;line-height:1;cursor:pointer;animation:fall linear forwards;filter:drop-shadow(0 4px 3px #0004);touch-action:manipulation}
+    @keyframes fall{from{transform:translateY(-65px) rotate(-15deg)}to{transform:translateY(470px) rotate(25deg)}}
+    .game-overlay{position:absolute;inset:0;z-index:8;display:flex;align-items:center;justify-content:center;background:#17345855;padding:20px}
+    .star{position:absolute;color:#fff4ad;text-shadow:0 2px 5px #996c22;pointer-events:none;animation:twinkle 2s infinite alternate}@keyframes twinkle{to{transform:scale(.7) rotate(20deg);opacity:.55}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+</head>
+<body>
+  <div id="welcome-screen">
+    <div class="envelope-card relative w-full max-w-lg overflow-hidden rounded-[2rem] p-7 pt-10 sm:p-10 text-center text-amber-50">
+      <div class="absolute inset-x-0 top-0 h-5 cow-print border-b-2 border-yellow-400"></div>
+      <img src="1.jpeg" alt="Joshua Kaled listo para su aventura de cumpleaños" class="mx-auto mb-5 h-36 w-36 rounded-full border-4 border-yellow-300 object-cover shadow-xl">
+      <p class="western mb-2 text-sm tracking-widest text-yellow-300">¡UNA CARTA PARA TI!</p>
+      <h2 class="western mb-3 text-3xl sm:text-4xl text-yellow-300">¡Tienes una invitación!</h2>
+      <p class="mb-7 text-lg text-amber-100">Joshua Kaled y la pandilla de Toy Story te esperan para una aventura vaquera. ¿Te animas?</p>
+      <button id="open-invitation" class="btn w-full rounded-2xl border-4 border-yellow-300 bg-red-600 px-5 py-4 western text-lg text-yellow-100 shadow-xl">¡ABRIR INVITACIÓN! 🚀</button>
+    </div>
+    <span id="welcome-hat" class="welcome-hat" aria-hidden="true">🤠</span>
+  </div>
+  <header class="sky clouds relative overflow-hidden min-h-[92vh] flex items-center py-14 px-4">
+    <span class="star text-4xl top-20 left-[8%]">✦</span><span class="star text-3xl top-32 right-[12%]" style="animation-delay:.5s">✦</span><span class="star text-2xl bottom-24 left-[17%]" style="animation-delay:1s">✦</span>
+    <div class="max-w-6xl mx-auto w-full grid md:grid-cols-[1fr_.85fr] gap-10 items-center relative z-10">
+      <div class="hero-copy text-center md:text-left order-2 md:order-1">
+        <div class="inline-flex items-center gap-2 bg-white/90 border-2 border-amber-300 rounded-full px-5 py-2 text-blue-900 font-bold shadow mb-5">⭐ FIESTA DE PRESENTACIÓN · 3 AÑOS</div>
+        <p class="western text-amber-900 text-xl md:text-2xl mb-2">¡Hay una celebración en el horizonte!</p>
+        <h1 class="toy toy-title uppercase text-5xl sm:text-6xl md:text-7xl leading-tight mb-5">Joshua<br class="sm:hidden"> Kaled</h1>
+        <p class="text-xl md:text-2xl text-blue-950 max-w-xl mb-7">Te invita a compartir una aventura de película. ¡Prepara tu sombrero, vaquero!</p>
+        <a href="#juego" class="btn inline-flex items-center justify-center gap-3 bg-red-500 text-white font-bold text-lg px-7 py-4 rounded-full border-4 border-white shadow-lg">🤠 ¡Juega para descubrir la invitación! <span>↓</span></a>
+      </div>
+      <div class="relative order-1 md:order-2 max-w-md mx-auto w-full">
+        <div class="absolute -inset-4 rounded-[2.5rem] bg-yellow-300 rotate-6"></div>
+        <img src="1.jpeg" alt="Joshua vestido de Buzz Lightyear, imagen principal de la invitación" class="hero-photo relative rounded-[2rem] w-full aspect-[1.18]">
+        <img src="woody_1.png" alt="Woody saluda desde el marco de la foto" class="character-buddy buddy-woody">
+        <span class="buddy-buzz" role="img" aria-label="Buzz Lightyear">🚀</span>
+        <div class="absolute -bottom-5 -left-3 sm:-left-7 bg-red-500 text-white western rounded-full w-20 h-20 sm:w-24 sm:h-24 flex items-center justify-center text-center text-xl sm:text-2xl border-4 border-white shadow-lg rotate-[-10deg]">¡3<br>años!</div>
+        <div class="absolute -top-4 -right-3 bg-white text-blue-900 font-bold px-4 py-2 rounded-xl shadow rotate-3">¡Al infinito y más allá! 🚀</div>
+      </div>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 h-5 cow-print border-y-4 border-amber-900"></div>
+  </header>
+
+  <main>
+    <section id="juego" class="py-20 px-4 sky">
+      <div class="max-w-4xl mx-auto text-center">
+        <div class="inline-flex bg-white/90 text-amber-900 px-5 py-2 rounded-full border-2 border-yellow-400 font-bold mb-4">🎮 MISIÓN DEL CUARTO DE ANDY</div>
+        <h2 class="toy text-4xl md:text-5xl text-red-500 mb-3">¡Ayuda a Woody!</h2>
+        <p class="text-blue-950 text-lg mb-4">Atrapa los juguetes y objetos vaqueros para sumar <strong>8 puntos</strong>. ¡Cuidado con las serpientes: te quitan 1 punto!</p>
+        <div class="flex flex-wrap justify-center gap-x-4 gap-y-1 max-w-2xl mx-auto mb-3 text-sm font-semibold text-blue-950"><span>⭐ 🐎 🚀 🤠 🎩 suman puntos</span><span>🐍 resta 1</span></div>
+        <div class="flex justify-between items-center max-w-2xl mx-auto mb-3 px-2 font-bold text-blue-950"><span>⭐ Puntos: <span id="score" class="inline-block">0</span> / 8</span><span>Récord: <span id="best">0</span></span></div>
+        <div id="game-stage" class="shadow-xl" aria-label="Juego: toca las estrellas que caen">
+          <div class="absolute bottom-[24%] left-0 right-0 h-2 bg-green-700/50"></div><div class="toy-box" aria-hidden="true">🧸📦</div>
+          <div id="game-overlay" class="game-overlay"><div class="bg-white rounded-3xl p-6 md:p-8 border-4 border-yellow-400 shadow-2xl max-w-sm"><div class="text-5xl mb-2">🐎🚀🤠</div><h3 id="game-message" class="western text-xl text-blue-900">¡Listo para la misión, vaquero?</h3><p id="game-subtitle" class="text-slate-600 mt-2">Atrapa juguetes y objetos del oeste. ¡Esquiva las serpientes!</p><button id="start-game" class="btn mt-5 bg-red-500 text-white font-bold text-lg rounded-full px-7 py-3 border-4 border-red-200">¡Comenzar!</button></div></div>
+        </div>
+        <button id="restart-game" class="hidden btn mt-5 bg-blue-900 text-white font-bold rounded-full px-6 py-3">Jugar otra vez ↻</button>
+      </div>
+    </section>
+
+    <section id="detalles" class="locked py-20 px-4 bg-[#fff8e8]" aria-hidden="true" inert>
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-12"><span class="western text-red-500 tracking-widest">¡MISIÓN CUMPLIDA!</span><h2 class="toy text-4xl md:text-5xl text-blue-900 mt-2">Detalles de la fiesta</h2></div>
+        <div class="grid md:grid-cols-2 gap-7">
+          <article class="card p-7 md:p-9 text-center"><div class="text-5xl mb-3">📅</div><h3 class="western text-2xl text-amber-900 mb-3">¿Cuándo?</h3><p class="font-bold text-2xl text-blue-950">19 de diciembre</p><p class="text-lg text-red-600 font-semibold mt-1">A las 15:00 hrs</p><p class="text-sm text-slate-500 mt-2">¡Te esperamos para celebrar!</p></article>
+          <article class="card p-7 md:p-9 text-center"><div class="text-5xl mb-3">📍</div><h3 class="western text-2xl text-amber-900 mb-3">¿Dónde?</h3><p class="font-bold text-lg text-blue-950">Calle Ignacio Zaragoza #2</p><p class="text-slate-700">Col. 5 de Mayo</p><p class="text-sm text-slate-600 mt-2">Contra esquina de la primaria José Vasconcelos</p><a href="https://maps.app.goo.gl/kCxQdhyL9LS637Q96?g_st=afm" target="_blank" rel="noopener noreferrer" class="btn inline-flex mt-5 bg-sky-600 text-white font-bold px-5 py-3 rounded-full shadow">🗺️ Abrir ubicación en Google Maps</a></article>
+        </div>
+        <div class="mt-8 grid md:grid-cols-[.75fr_1.25fr] items-center gap-8 bg-blue-900 rounded-[2rem] p-6 md:p-9 text-white shadow-xl overflow-hidden">
+          <div class="relative mx-auto w-full max-w-sm md:max-w-none">
+            <img src="2.jpeg" alt="Joshua con atuendo vaquero junto a sus personajes favoritos de Toy Story" class="secondary-photo rounded-2xl w-full max-h-[390px]">
+            <img src="3.jpeg" alt="Joshua con Tiro al Blanco, su caballo vaquero" class="character-buddy buddy-horse">
+          </div>
+          <div class="text-center md:text-left py-3"><div class="text-5xl mb-3">👢🤠⭐</div><p class="western text-yellow-300 text-sm tracking-[.2em]">CÓDIGO DE VESTIMENTA</p><h3 class="toy text-4xl md:text-5xl mt-2 mb-4">¡De vaqueros!</h3><p class="text-blue-100 text-lg">Invitamos al público general a venir con vestimenta vaquera. Sombrero, botas y pañuelo: ¡que empiece el rodeo!</p><div class="inline-flex mt-6 bg-red-500 px-5 py-3 rounded-full font-bold">Tema de la fiesta: Toy Story 🚀</div></div>
+        </div>
+        <section id="rsvp" class="mt-12 mx-auto max-w-2xl">
+          <div class="rounded-[2rem] border-4 border-yellow-400 bg-amber-950 p-7 md:p-9 text-amber-50 shadow-2xl">
+            <div class="text-center"><div class="text-5xl mb-3">🤠📲</div><h3 class="western text-2xl md:text-3xl text-yellow-300">¡Confirma tu asistencia!</h3><p class="mt-2 mb-7 text-amber-200">Cuéntanos si te unes a la aventura de Joshua.</p></div>
+            <form id="rsvp-form" class="space-y-5">
+              <div><label for="attendance" class="mb-2 block text-sm font-bold">¿Nos acompañarás?</label><select id="attendance" class="w-full rounded-xl border-2 border-amber-500 bg-amber-900 p-3 text-white"><option value="si">¡Claro que sí! 🤠🎉</option><option value="no">Lo siento, no podré asistir 😢</option></select></div>
+              <div><label for="guest-message" class="mb-2 block text-sm font-bold">Mensaje (opcional)</label><textarea id="guest-message" rows="3" placeholder="¡Felicidades, Joshua!" class="w-full resize-none rounded-xl border-2 border-amber-500 bg-amber-900 p-3 text-white placeholder-amber-300/70"></textarea></div>
+              <button type="submit" class="btn w-full rounded-xl border-2 border-yellow-300 bg-emerald-600 py-4 font-bold text-white">CONFIRMAR POR WHATSAPP 📲</button>
+            </form>
+            <p id="rsvp-feedback" class="hidden mt-5 text-center font-semibold text-yellow-200" role="status">¡Listo! Termina de enviar tu mensaje en WhatsApp. ⭐</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+  </main>
+  <footer class="bg-amber-950 text-amber-100 text-center py-8 px-4 border-t-8 border-yellow-400"><p class="toy text-2xl text-yellow-300">¡Nos vemos en la aventura!</p><p class="mt-2">Con cariño, la familia de Joshua Kaled 💛</p></footer>
+
+  <script>
+    const stage=document.getElementById('game-stage'), scoreEl=document.getElementById('score'), bestEl=document.getElementById('best');
+    const overlay=document.getElementById('game-overlay'), message=document.getElementById('game-message'), subtitle=document.getElementById('game-subtitle');
+    const startButton=document.getElementById('start-game'), restartButton=document.getElementById('restart-game');
+    const GOAL=8; let score=0, active=false, unlocked=false, spawnTimer=null, best=Number(localStorage.getItem('joshuaToyStoryBest')||0); bestEl.textContent=best;
+    function burst(x,y){if(typeof confetti==='function')confetti({particleCount:24,spread:65,origin:{x,y},colors:['#ffd447','#e74438','#70c8f2','#ffffff']})}
+    function sparkleAt(x,y){const sparkle=document.createElement('span');sparkle.className='sparkle-particle';sparkle.textContent=['✨','⭐','💫'][Math.floor(Math.random()*3)];sparkle.style.left=x+'px';sparkle.style.top=y+'px';stage.appendChild(sparkle);sparkle.addEventListener('animationend',()=>sparkle.remove(),{once:true})}
+    function endGame(won){active=false;stage.classList.remove('game-active');clearInterval(spawnTimer);stage.querySelectorAll('.catch-item').forEach(item=>item.remove());overlay.classList.remove('hidden');restartButton.classList.remove('hidden');message.textContent=won?'¡Misión cumplida, vaquero!':'¡Buen intento, vaquero!';subtitle.textContent=won?'¡Los detalles de la fiesta ya están desbloqueados!':'Las serpientes hicieron de las suyas. ¡Inténtalo de nuevo!';startButton.textContent='Jugar otra vez';burst(.5,.45);if(won){unlocked=true;const details=document.getElementById('detalles');details.classList.remove('locked');details.removeAttribute('aria-hidden');details.removeAttribute('inert');if(score>best){best=score;bestEl.textContent=best;localStorage.setItem('joshuaToyStoryBest',String(best))}setTimeout(()=>details.scrollIntoView({behavior:'smooth'}),500)}}
+    function startGame(){score=0;scoreEl.textContent='0';active=true;stage.classList.add('game-active');overlay.classList.add('hidden');restartButton.classList.add('hidden');stage.querySelectorAll('.catch-item').forEach(item=>item.remove());spawnTimer=setInterval(spawnStar,700);spawnStar()}
+    function spawnStar(){if(!active)return;const item=document.createElement('button');item.type='button';item.className='catch-item';const hazard=Math.random()<.22;const symbols=hazard?['🐍']:['⭐','🌟','✨','💫','🐎','🚀','🤠','🎩'];const symbol=symbols[Math.floor(Math.random()*symbols.length)];item.textContent=symbol;item.dataset.hazard=String(hazard);item.setAttribute('aria-label',hazard?'Serpiente: resta un punto':'Atrapar '+symbol+' para sumar un punto');const max=Math.max(0,stage.clientWidth-60);item.style.left=(12+Math.random()*Math.max(0,max-12))+'px';item.style.top='-55px';item.style.animationDuration=(2.5+Math.random()*.9)+'s';let caught=false;const catchIt=e=>{if(caught||!active)return;caught=true;e.preventDefault();e.stopPropagation();const rect=item.getBoundingClientRect(),stageRect=stage.getBoundingClientRect();sparkleAt(rect.left-stageRect.left+rect.width/2,rect.top-stageRect.top+rect.height/2);if(hazard){score=Math.max(0,score-1);item.classList.add('snake-pop')}else{score++;item.classList.add('catch-pop')}scoreEl.textContent=score;scoreEl.classList.remove('score-pop');void scoreEl.offsetWidth;scoreEl.classList.add('score-pop');burst(e.clientX/window.innerWidth,e.clientY/window.innerHeight);setTimeout(()=>item.remove(),320);if(score>=GOAL)endGame(true)};item.addEventListener('pointerdown',catchIt);item.addEventListener('animationend',()=>item.remove());stage.appendChild(item)}
+    startButton.addEventListener('click',startGame);restartButton.addEventListener('click',startGame);
+    stage.addEventListener('pointerdown',e=>{if(!active||e.target.closest('.catch-item')||e.target.closest('button'))return;const targets=[...stage.querySelectorAll('.catch-item')];if(!targets.length)return;let nearest=targets.sort((a,b)=>Math.abs(a.getBoundingClientRect().left-e.clientX)-Math.abs(b.getBoundingClientRect().left-e.clientX))[0];nearest.click()});
+    window.addEventListener('keydown',e=>{if(!active||!['Enter',' '].includes(e.key))return;const stars=[...stage.querySelectorAll('.catch-item')];if(stars.length){e.preventDefault();stars[0].click()}});
+    document.querySelectorAll('.secondary-photo').forEach(photo=>{photo.tabIndex=0;photo.addEventListener('click',()=>{photo.classList.remove('image-tap');void photo.offsetWidth;photo.classList.add('image-tap');setTimeout(()=>photo.classList.remove('image-tap'),500)})});
+    document.getElementById('open-invitation').addEventListener('click',()=>{const welcome=document.getElementById('welcome-screen'),hat=document.getElementById('welcome-hat'),invitationStart=document.querySelector('header');const photoRect=document.querySelector('.hero-photo').getBoundingClientRect();const hatStart=hat.getBoundingClientRect();hat.style.left=hatStart.left+'px';hat.style.top=hatStart.top+'px';hat.style.setProperty('--hat-x',(photoRect.left+photoRect.width*.76-hatStart.left)+'px');hat.style.setProperty('--hat-y',(photoRect.top+photoRect.height*.13-hatStart.top)+'px');hat.classList.add('fly');document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,0);requestAnimationFrame(()=>window.scrollTo(0,0));setTimeout(()=>{welcome.style.opacity='0';welcome.style.transform='scale(1.04)';setTimeout(()=>welcome.remove(),700);window.scrollTo({top:invitationStart.offsetTop,behavior:'instant'});document.documentElement.style.scrollBehavior=''},850);if(typeof confetti==='function')confetti({particleCount:90,spread:65,origin:{y:.65},colors:['#ffd447','#e74438','#70c8f2']})});
+    document.getElementById('rsvp-form').addEventListener('submit',e=>{e.preventDefault();if(!unlocked)return;const status=document.getElementById('attendance').value;const note=document.getElementById('guest-message').value.trim();let text=status==='si'?'🤠 ¡Hola! Confirmo mi asistencia a la fiesta de presentación de Joshua Kaled. 🎉':'Hola, gracias por la invitación a la fiesta de Joshua Kaled. Lamentablemente no podré asistir.';if(note)text+='\n\nMensaje: '+note;text+='\n\n¡Saludos!';window.open('https://api.whatsapp.com/send?phone=525577965379&text='+encodeURIComponent(text),'_blank','noopener,noreferrer');document.getElementById('rsvp-feedback').classList.remove('hidden')});
+  </script>
+</body>
+</html>

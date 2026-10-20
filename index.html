@@ -41,6 +41,9 @@
     .character-buddy{position:absolute;z-index:3;pointer-events:none;filter:drop-shadow(0 8px 7px #13294b40);animation:buddy-float 3s ease-in-out infinite}
     @keyframes buddy-float{0%,100%{translate:0 0;rotate:-3deg}50%{translate:0 -9px;rotate:3deg}}
     .buddy-buzz{position:absolute;z-index:3;right:-.75rem;bottom:-.7rem;width:4.5rem;height:4.5rem;border:4px solid white;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#b8f3d6,#62c2a1);font-size:2rem;box-shadow:0 7px 18px #17345835;animation:buddy-float 2.5s ease-in-out infinite}
+    #music-control{position:fixed;z-index:60;top:1rem;right:1rem;width:3.25rem;height:3.25rem;display:grid;place-items:center;border:3px solid #ffd447;border-radius:50%;background:#754323;color:#fff;font-size:1.4rem;box-shadow:0 6px 18px #17345845;cursor:pointer;transition:transform .2s,box-shadow .2s}
+    #music-control:hover{transform:scale(1.1) rotate(8deg);box-shadow:0 8px 22px #17345855}#music-control.playing{animation:music-pulse 2s ease-in-out infinite}
+    @keyframes music-pulse{50%{box-shadow:0 0 0 9px #ffd44745,0 8px 22px #17345845}}
     @keyframes card-arrive{from{opacity:0;transform:translateY(24px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
     .hero-copy>*{animation:rise-in .7s both}.hero-copy>*:nth-child(2){animation-delay:.1s}.hero-copy>*:nth-child(3){animation-delay:.2s}.hero-copy>*:nth-child(4){animation-delay:.3s}.hero-copy>*:nth-child(5){animation-delay:.4s}
     @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
@@ -64,6 +67,11 @@
   </style>
 </head>
 <body>
+  <!-- Reemplaza song.mp3 por tu archivo de música, conservando ese nombre. -->
+  <audio id="bg-music" loop preload="auto" playsinline>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+  <button id="music-control" type="button" aria-label="Activar música" title="Activar música"><span id="music-icon" aria-hidden="true">🎵</span></button>
   <div id="welcome-screen">
     <div class="envelope-card relative w-full max-w-lg overflow-hidden rounded-[2rem] p-7 pt-10 sm:p-10 text-center text-amber-50">
       <div class="absolute inset-x-0 top-0 h-5 cow-print border-b-2 border-yellow-400"></div>
@@ -141,6 +149,15 @@
   <footer class="bg-amber-950 text-amber-100 text-center py-8 px-4 border-t-8 border-yellow-400"><p class="toy text-2xl text-yellow-300">¡Nos vemos en la aventura!</p><p class="mt-2">Con cariño, la familia de Joshua Kaled 💛</p></footer>
 
   <script>
+    const bgMusic=document.getElementById('bg-music'),musicControl=document.getElementById('music-control'),musicIcon=document.getElementById('music-icon');
+    let musicPlaying=false;
+    function updateMusicControl(playing){musicPlaying=playing;musicIcon.textContent=playing?'🔊':'🎵';musicControl.classList.toggle('playing',playing);musicControl.setAttribute('aria-label',playing?'Pausar música':'Activar música');musicControl.title=playing?'Pausar música':'Activar música'}
+    function playMusic(){if(!bgMusic||musicPlaying)return;const attempt=bgMusic.play();if(attempt&&typeof attempt.then==='function')attempt.then(()=>updateMusicControl(true)).catch(()=>updateMusicControl(false));}
+    function toggleMusic(){if(!bgMusic)return;if(musicPlaying){bgMusic.pause();updateMusicControl(false)}else playMusic()}
+    musicControl.addEventListener('click',toggleMusic);
+    bgMusic.addEventListener('play',()=>updateMusicControl(true));bgMusic.addEventListener('pause',()=>updateMusicControl(false));
+    const firstUserInteraction=()=>{playMusic();window.removeEventListener('pointerdown',firstUserInteraction);window.removeEventListener('keydown',firstUserInteraction)};
+    window.addEventListener('pointerdown',firstUserInteraction);window.addEventListener('keydown',firstUserInteraction);
     const stage=document.getElementById('game-stage'), scoreEl=document.getElementById('score'), bestEl=document.getElementById('best');
     const overlay=document.getElementById('game-overlay'), message=document.getElementById('game-message'), subtitle=document.getElementById('game-subtitle');
     const startButton=document.getElementById('start-game'), restartButton=document.getElementById('restart-game');
